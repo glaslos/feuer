@@ -9,6 +9,6 @@ import (
 func main() {
 	recordMetrics()
 
-	http.Handle("/metrics", promhttp.Handler())
+	http.Handle("/metrics", logMiddleware(promhttp.Handler()))
 	http.ListenAndServe(":2112", nil)
 }

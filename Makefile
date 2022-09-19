@@ -15,3 +15,9 @@ influxdb:
 
 telegraf:
 	$(DOCKER) -v $(HOME)/telegraf.conf:/etc/telegraf/telegraf.conf telegraf
+
+promtail:
+	$(DOCKER) -v $(HOME)/promtail.yml:/mnt/config/promtail.yml -v $(HOME)/logs:/mnt/logs grafana/promtail:2.6.1 -config.file=/mnt/config/promtail.yml
+
+loki:
+	$(DOCKER) -v $(HOME)/loki.yml:/mnt/config/loki.yml -p 3100:3100 grafana/loki:2.6.1 -config.file=/mnt/config/loki.yml
