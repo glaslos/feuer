@@ -31,7 +31,7 @@ func logMiddleware(next http.Handler) http.Handler {
 	once.Do(setup)
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Println("{\"path\": \"" + r.URL.Path + "\"}")
+		log.Println("{\"path\": \"" + r.URL.Path + "\", \"status\": \"good\"}")
 		next.ServeHTTP(w, r)
 	})
 }
